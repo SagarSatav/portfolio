@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Python FastAPI AI / RAG service (uses local myenv)",
+  "scripts": {
+    "install:env": "sh -c 'if [ ! -x myenv/bin/python ]; then python3 -m venv myenv; fi && myenv/bin/pip install --upgrade pip && myenv/bin/pip install -r requirements.txt'",
+    "dev": "sh -c 'if [ -x myenv/bin/python ]; then myenv/bin/python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000; else echo \"Missing myenv. From repo root run: npm run install:backend\"; exit 1; fi'",
+    "start": "sh -c 'myenv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000'"
+  }
+}

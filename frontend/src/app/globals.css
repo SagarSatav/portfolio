@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/*
+  Cosmic Security theme
+  Reference: /public/theme/cosmic-reference.png
+*/
+:root {
+  --background: #05070a;
+  --foreground: #f8fafc;
+  --color-space: #05070a;
+  --color-midnight: #0b1220;
+  --color-cyan: #22d3ee;
+  --color-violet: #8b5cf6;
+  --color-magenta: #d946ef;
+  --color-surface-light: #f4f7fb;
+  --color-text-muted: rgba(248, 250, 252, 0.72);
+  --gradient-accent: linear-gradient(
+    135deg,
+    #22d3ee 0%,
+    #8b5cf6 55%,
+    #d946ef 100%
+  );
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-space: var(--color-space);
+  --color-midnight: var(--color-midnight);
+  --color-cyan: var(--color-cyan);
+  --color-violet: var(--color-violet);
+  --color-magenta: var(--color-magenta);
+  --color-surface-light: var(--color-surface-light);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-cyan) 40%, transparent);
+  color: white;
+}
+
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-clip-light {
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+}

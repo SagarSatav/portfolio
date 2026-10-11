@@ -1,0 +1,128 @@
+Hero: a colorful planetary landscape with a large ringed planet and astronaut.
+Typography: bold, clean white headlines with blue-to-violet gradient highlights.
+Buttons: bright gradient for “Explore My Work” and a transparent secondary resume button.
+About section: switch to a light, glass-like background for contrast.
+3D elements: a rotating planet, small orbiting moons, and subtle parallax movement.
+Professional content: compact skills, projects, experience, and contact sections
+Technology	Responsibility
+Next.js App Router	Routing, page composition, metadata
+TypeScript	Typed components and portfolio data
+Tailwind CSS	Responsive layout and styling
+Motion for React	Entrance effects, hover interactions, scroll reveals
+Three.js + React Three Fiber	Interactive 3D planet or orbital scene
+@react-three/drei	Helpful abstractions for the 3D scene
+Lucide React	Consistent interface icons
+ESLint	Code-quality checks
+Vercel	Deployment and hosting
+
+cosmic-portfolio/
+├── public/
+│   ├── images/
+│   │   ├── hero/
+│   │   │   └── cosmic-hero.webp
+│   │   ├── projects/
+│   │   │   ├── apix.webp
+│   │   │   └── browser-extension.webp
+│   │   └── profile/
+│   │       └── profile.webp
+│   ├── models/
+│   │   └── planet.glb
+│   ├── icons/
+│   └── resume/
+│       └── sagar-satav-resume.pdf
+│
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── globals.css
+│   │   ├── not-found.tsx
+│   │   └── projects/
+│   │       └── [slug]/
+│   │           └── page.tsx
+│   │
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   └── Container.tsx
+│   │   ├── sections/
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── AboutSection.tsx
+│   │   │   ├── SkillsSection.tsx
+│   │   │   ├── ProjectsSection.tsx
+│   │   │   ├── ExperienceSection.tsx
+│   │   │   └── ContactSection.tsx
+│   │   ├── cosmic/
+│   │   │   ├── CosmicBackground.tsx
+│   │   │   ├── PlanetScene.tsx
+│   │   │   ├── PlanetFallback.tsx
+│   │   │   └── Starfield.tsx
+│   │   ├── projects/
+│   │   │   ├── ProjectCard.tsx
+│   │   │   └── ProjectDetails.tsx
+│   │   ├── skills/
+│   │   │   └── SkillGroup.tsx
+│   │   └── ui/
+│   │       ├── Button.tsx
+│   │       ├── SectionHeading.tsx
+│   │       ├── GlassCard.tsx
+│   │       └── SocialLinks.tsx
+│   │
+│   ├── data/
+│   │   ├── profile.ts
+│   │   ├── skills.ts
+│   │   ├── projects.ts
+│   │   └── experience.ts
+│   │
+│   ├── hooks/
+│   │   └── useActiveSection.ts
+│   │
+│   ├── lib/
+│   │   ├── constants.ts
+│   │   └── utils.ts
+│   │
+│   └── types/
+│       ├── project.ts
+│       └── portfolio.ts
+│
+├── .env.example
+├── .gitignore
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── tsconfig.json
+└── README.md
+
+Section	Requirements
+Navbar	Logo/name, section links, mobile menu, resume action
+Hero	Main headline, short introduction, primary CTA, social links, cosmic scene
+About	Short professional summary and engineering strengths
+Skills	Grouped frontend, integration, tooling, and security skills
+Projects	Project image, summary, contributions, stack, available links
+Experience	Employer, role, dates, responsibilities, verified achievements
+Contact	Email, LinkedIn, GitHub, optional message form
+Footer	Copyright, social links, back-to-top navigation
+6. Functional and non-functional requirements
+Functional requirements
+- [x] Navbar links scroll to the correct sections.
+- [x] Resume button downloads the correct PDF.
+- [x] Project cards show accurate details and available links.
+- [x] Skills are grouped by category.
+- [x] Experience timeline displays real employment details.
+- [x] GitHub, LinkedIn, and email links work correctly.
+- [x] Mobile navigation opens, closes, and supports keyboard interaction.
+- [x] 3D elements support graceful fallback when WebGL is unavailable.
+- [x] Contact form, if implemented, validates inputs and handles submission errors.
+Non-functional requirements
+- [x] Responsive at mobile, tablet, laptop, and large desktop sizes.
+- [x] Good performance and Core Web Vitals.
+- [x] Semantic HTML, keyboard accessibility, and visible focus indicators.
+- [x] Reduced-motion support.
+- [x] Search-engine metadata and social sharing previews.
+- [x] No exposed secrets or confidential company information.
+- [x] Maintainable TypeScript with consistent linting and formatting.
+
+
+

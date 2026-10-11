@@ -1,0 +1,20 @@
+// Cosmic theme tokens for SCSS modules / custom animations.
+// Prefer Tailwind utilities in components; use SCSS for complex effects.
+
+$color-space: #05070a;
+$color-midnight: #0b1220;
+$color-cyan: #22d3ee;
+$color-violet: #8b5cf6;
+$color-magenta: #d946ef;
+$color-surface-light: #f4f7fb;
+
+$gradient-accent: linear-gradient(
+  135deg,
+  $color-cyan 0%,
+  $color-violet 55%,
+  $color-magenta 100%
+);
+
+$glass-border-dark: rgba(255, 255, 255, 0.1);
+$glass-bg-dark: rgba(255, 255, 255, 0.05);
+$glass-blur: 12px;

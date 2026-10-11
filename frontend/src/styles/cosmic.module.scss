@@ -1,0 +1,42 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Example SCSS module — import in a component when Tailwind is not enough:
+// import styles from "@/styles/cosmic.module.scss"
+
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 70% 40%,
+    rgba($color-violet, 0.28),
+    transparent 55%
+  );
+}
+
+.glassPanel {
+  @include glass-dark;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.orbitPulse {
+  animation: orbit-pulse 4s ease-in-out infinite;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes orbit-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}

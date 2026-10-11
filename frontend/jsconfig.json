@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "ES2017",
+    "checkJs": false,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.js", "src/**/*.jsx", "next.config.mjs"],
+  "exclude": ["node_modules", ".next"]
+}
