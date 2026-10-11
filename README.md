@@ -301,21 +301,77 @@ npm run start --prefix backend/ai    # uvicorn without --reload
 
 ---
 
-## 5) How the pieces talk
+## 5) How the pieces talk (chat request flow)
 
 ```text
-Browser
+Browser (chat UI on the website)
   → frontend (Next.js :3000)
       → POST /api/chat   (thin BFF)
           → backend/api (Node :3001)
               → backend/ai (Python :8000)
-                  → knowledge/ (resume, LinkedIn, portfolio, FAQ)
+                  → answers using ingested knowledge/
 ```
 
 - **npm** = convenient command runner for all services  
 - **Node** = real backend API (`backend/api`)  
 - **Python + myenv** = real AI service (`backend/ai`)  
 - Frontend never holds Gemini/API keys (`NEXT_PUBLIC_*` is not for secrets)
+
+---
+
+## 5b) Knowledge → AI flow (`export-knowledge` — not shown on UI)
+
+Website content and AI knowledge are **separate**:
+
+| Path | Used for |
+| --- | --- |
+| `frontend/src/data/*.js` | Website UI (Hero, Skills, Projects…) |
+| `knowledge/**` | AI / RAG only (not rendered on the UI) |
+
+### Flow
+
+```text
+1) You edit site data
+   frontend/src/data/profile.js, skills.js, projects.js, experience.js
+
+2) Export for AI (prepare markdown files)
+   npm run knowledge:export
+   → scripts/export-knowledge.mjs
+   → writes knowledge/portfolio/*.md
+
+3) Also feed other sources manually (optional)
+   knowledge/resume/     ← PDF resume
+   knowledge/linkedin/   ← LinkedIn export / profile.md
+   knowledge/general/    ← FAQ, availability notes
+
+4) AI service ingests knowledge/ (Phase 3)
+   backend/ai  → POST /ingest/folder
+   → chunks + embeddings + ChromaDB
+
+5) Visitor asks chatbot
+   Browser → BFF → backend/api → backend/ai → retrieves from knowledge → answer
+```
+
+### What `scripts/export-knowledge.mjs` does (only this)
+
+It is a **read + write sync** script. Nothing more.
+
+1. **Read** `frontend/src/data/*.js` (profile, skills, projects, experience)
+2. **Write** the same facts into `knowledge/portfolio/*.md`
+
+It does **not**:
+- render anything on the website UI
+- call the Node API or Python AI
+- ingest into Chroma / run embeddings
+- start any server
+
+Purpose: keep site data and the AI knowledge folder in sync so RAG can use the same facts later.
+
+### Important
+
+- `npm run knowledge:export` does **not** update the website UI.
+- It only syncs UI data into `knowledge/portfolio/` for the **Python AI/RAG** service.
+- Run it whenever you change `frontend/src/data/*`, before (re)ingesting into AI.
 
 ---
 

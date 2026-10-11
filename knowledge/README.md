@@ -18,4 +18,9 @@ cd ~/portfolio
 npm run knowledge:export
 ```
 
-Reads `frontend/src/data/*` → writes `knowledge/portfolio/*.md`.
+`scripts/export-knowledge.mjs` is **only a read + write sync**:
+
+1. Reads `frontend/src/data/*`
+2. Writes `knowledge/portfolio/*.md`
+
+It does not update the UI, call backend services, or run RAG ingest.

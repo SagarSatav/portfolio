@@ -23,9 +23,21 @@
 - [ ] Python ingest (resume, LinkedIn, portfolio → Chroma)
 - [ ] Node Gemini tool-calling agent
 - [ ] ChatbotWidget UI in frontend
-- [ ] Tokens + rate limits
+- [ ] Tokens + auth between BFF ↔ API ↔ AI
+
+## Phase 3+ — Chat history, rate limits, analytics (Node DB)
+
+Needed for product use (not for AI vectors):
+
+- [ ] Add DB to `backend/api` (MongoDB recommended; Postgres also fine)
+- [ ] Save chat history per user/session (`sessionId` or auth user)
+- [ ] Rate-limit `/chat` (IP / session) + persist rate-limit logs
+- [ ] Basic analytics (messages/day, blocked requests, popular questions)
+- [ ] Optional Redis for faster rate-limit counters
+
+AI stays on **Chroma** only. History/analytics stay on **Mongo/Postgres** in Node.
 
 ## Phase 4 — Ship
 
 - [ ] SEO / a11y
-- [ ] Deploy frontend + backend services
+- [ ] Deploy frontend + backend services (+ DB)

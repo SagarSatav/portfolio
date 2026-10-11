@@ -109,3 +109,48 @@ Env files:
 ```json
 { "question": "Does Sagar know Keycloak?", "top_k": 5 }
 ```
+
+## Data stores
+
+| Store | Service | Used for |
+| --- | --- | --- |
+| **Chroma** (vector) | `backend/ai` | RAG knowledge only |
+| **MongoDB** (or Postgres) | `backend/api` | Chat history per user/session, analytics logs |
+| **Redis** (optional) | `backend/api` | Faster rate-limit counters |
+
+### Features you mainly need (Phase 3+)
+
+1. **Save chat history per user/session** → MongoDB/Postgres in `backend/api`
+2. **Analytics / rate-limit logs** → same DB (+ optional Redis)
+
+Planned folders later in Node:
+
+```text
+backend/api/src/
+  models/                 # Conversation, Message, RateLimitLog
+  services/
+    chatHistoryService.js
+    rateLimitService.js
+    analyticsService.js
+```
+
+AI stays on **Chroma**. History / rate limits / analytics stay on **Node + Mongo** (not in the vector DB).
+
+## Security
+
+- Browser → Next BFF only
+- Optional tokens: `BACKEND_TOKEN`, `RAG_SERVICE_TOKEN`
+- Chat history: start with anonymous `sessionId` unless you add real auth
+- Knowledge base = public professional info only
+
+## Status
+
+| Piece | Status |
+| --- | --- |
+| 3-service layout | Done |
+| Knowledge export | Done |
+| Backend chat stub | Done |
+| AI ingest/query stub | Done |
+| Next BFF proxy | Done |
+| Real Gemini + Chroma + UI | Phase 3 |
+| Chat history + rate-limit/analytics DB | Phase 3+ (planned) |
