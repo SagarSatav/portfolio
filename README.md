@@ -1,4 +1,4 @@
-# Sagar Satav — Cosmic Security Portfolio
+# Sagar Satav — Portfolio
 
 Monorepo with clear **frontend** + **backend** separation.
 
