@@ -1,4 +1,4 @@
-# Sagar Satav — Portfolio
+# Portfolio
 
 Monorepo with clear **frontend** + **backend** separation.
 
